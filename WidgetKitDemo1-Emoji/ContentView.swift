@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @AppStorage("emoji", store: UserDefaults(suiteName: "group.com.levihan.WidgetKitDemo1-Emoji"))
+    @AppStorage("emoji", store: UserDefaults(suiteName: "group.com.levihan.WidgetKitDemo1Emoji"))
     var emojiData = Data()
     
     let emojis = [
-        Emoji(icon: "😄", name: "happy", description: "this is a happy description"),
-        Emoji(icon: "😂", name: "shyme", description: "this is a shyme description"),
-        Emoji(icon: "🏠", name: "family", description: "this is a family description"),
+        Emoji(icon: "😄", name: "happy", description: "This is a happy description ha"),
+        Emoji(icon: "😂", name: "shyme", description: "This is a shyme description."),
+        Emoji(icon: "🏠", name: "family", description: "This is a family description"),
     ]
     var body: some View {
         VStack {
@@ -25,10 +25,17 @@ struct ContentView: View {
                 }
             }
         }
+        Text(emojiData.description)
     }
     
     func save(_ emoji: Emoji) {
         guard let emojiData = try? JSONEncoder().encode(emoji) else { return }
+        if let defaults = UserDefaults(suiteName: "group.com.levihan.WidgetKitDemo1-Emoji") {
+            defaults.setValue(emojiData, forKey: "emoji")
+            defaults.synchronize()
+            print("save to UserDefaults \(emojiData.count)")
+        }
+            
         self.emojiData = emojiData
         print("save \(emoji)")
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Emoji : Identifiable, Codable{
+struct Emoji : Identifiable, Codable {
     let icon: String
     let name: String
     let description: String
