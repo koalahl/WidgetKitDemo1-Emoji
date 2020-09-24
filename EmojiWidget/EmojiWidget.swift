@@ -19,9 +19,6 @@ struct Provider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (EmojiEntry) -> ()) {
-        if let defaults = UserDefaults(suiteName: "group.com.levihan.WidgetKitDemo1-Emoji") {
-            emojiData = defaults.value(forKey: "emoji") as! Data
-        }
         guard let emoji = try? JSONDecoder().decode(Emoji.self, from: emojiData ) else {return}
         let entry = EmojiEntry(emoji: emoji)
         completion(entry)
@@ -29,12 +26,7 @@ struct Provider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [EmojiEntry] = []
-        //guard let emoji = try? JSONDecoder().decode(Emoji.self, from: emojiData) else {return}
-
-        if let defaults = UserDefaults(suiteName: "group.com.levihan.WidgetKitDemo1-Emoji") {
-            emojiData = defaults.value(forKey: "emoji") as! Data
-        }
-        guard let emoji = try? JSONDecoder().decode(Emoji.self, from: emojiData ) else {return}
+        guard let emoji = try? JSONDecoder().decode(Emoji.self, from: emojiData) else {return}
 
         let entry = EmojiEntry(emoji: emoji)
         entries.append(entry)

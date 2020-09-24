@@ -30,12 +30,11 @@ struct ContentView: View {
     
     func save(_ emoji: Emoji) {
         guard let emojiData = try? JSONEncoder().encode(emoji) else { return }
-        if let defaults = UserDefaults(suiteName: "group.com.levihan.WidgetKitDemo1-Emoji") {
-            defaults.setValue(emojiData, forKey: "emoji")
-            defaults.synchronize()
-            print("save to UserDefaults \(emojiData.count)")
-        }
-            
+//        if let defaults = UserDefaults(suiteName: "group.com.levihan.WidgetKitDemo1-Emoji") {
+//            defaults.setValue(emojiData, forKey: "emoji")
+//            defaults.synchronize()
+//            print("save to UserDefaults \(emojiData.count)")
+//        }
         self.emojiData = emojiData
         print("save \(emoji)")
     }
